@@ -4,6 +4,8 @@ import { CreateSessionProps } from '~/app-engine/store/session-slice'
 import { withSessionRoute } from '~/app-server/session-hoc'
 import { app_logger } from '~/app-engine/library/logger'
 import { getSessionAppUser } from '~/app-server/session-user'
+import { withSentry } from '@sentry/nextjs';
+
 
 const login_route = async (req: NextApiRequest, res: NextApiResponse) => {
   const login_payload = (await req.body) as CreateSessionProps

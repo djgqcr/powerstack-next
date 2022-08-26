@@ -23,6 +23,7 @@
     "@radix-ui/react-switch": "^1.0.0",
     "@radix-ui/react-tabs": "^1.0.0",
     "@sentry/browser": "^7.11.1",
+    "@sentry/nextjs": "^7.11.1",
     "@solana/web3.js": "^1.53.0",
     "@stitches/react": "^1.2.8",
     "@web3auth/base": "^1.2.0",
