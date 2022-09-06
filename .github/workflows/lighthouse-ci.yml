@@ -18,7 +18,7 @@ jobs:
             Running Lighthouse audit...
       - name: Capture Vercel preview URL
         id: vercel_preview_url
-        uses: aaimio/vercel-preview-url-action@v1
+        uses: aaron-binary/vercel-preview-url-action@v0.0.3
         with:
           GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN}}
       - uses: actions/checkout@v2
@@ -56,7 +56,7 @@ jobs:
              core.setOutput("comment", comment); 
       - name: Add comment to PR
         id: comment_to_pr
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v1
         with:
           GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN}}
           number: ${{ github.event.issue.number }}
