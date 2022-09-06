@@ -15,7 +15,7 @@ jobs:
           number: ${{ github.event.issue.number }}
           header: lighthouse
           message: |
-            Running Lighthouse audit...
+            Running Lighthouse audit... powerstack
       - name: Capture Vercel preview URL
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
