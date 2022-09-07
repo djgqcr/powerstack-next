@@ -11,7 +11,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          
+
+      - run: sleep 3
       - name: vercel-preview-url
         uses: zentered/vercel-preview-url@v1.0.0
         id: vercel_preview_url
@@ -21,6 +22,7 @@ jobs:
         with:
           vercel_team_id: 'opstrace'
           vercel_project_id: 'opstrace.com'
+      
       - name: Get URL
         run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"      
 
