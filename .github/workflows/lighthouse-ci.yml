@@ -15,17 +15,19 @@ jobs:
           header: lighthouse
           message: |
             Running Lighthouse audit... 
-      - name: Capture vercel-preview-url
+      - name: Capturevercel-preview-url
         id: vercel_preview_url
-        uses: aaron-binary/vercel-preview-url-action@v0.0.3
-        with:  
-            GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      - uses: actions/checkout@v2
+        uses: zentered/vercel-preview-url@v1.0.0
+        env:  
+            VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} 
+
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
         uses: treosh/lighthouse-ci-action@v9
         with:
+          github-token: ${{secrets.LHCI_GITHUB_APP_TOKEN }}
           urls: |
             ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
+
