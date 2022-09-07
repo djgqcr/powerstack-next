@@ -12,16 +12,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: Add comment to PR
-        id: loading_comment_to_pr
-        uses: marocchino/sticky-pull-request-comment@v2.0.0
-        with:
-          GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-          number: ${{ github.event.issue.number }}
-          header: lighthouse
-          message: |
-            Running Lighthouse audit...
-
       - run: sleep 15
       - name: vercel-preview-url
         uses: zentered/vercel-preview-url@v1.0.0
@@ -32,10 +22,22 @@ jobs:
       - name: Get URL
         run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"      
 
+      - name: Add comment to PR
+        id: loading_comment_to_pr
+        uses: marocchino/sticky-pull-request-comment@v2.0.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          number: ${{ github.event.issue.number }}
+          header: lighthouse
+          message: |
+            Running Lighthouse audit...
+
+
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
         uses: treosh/lighthouse-ci-action@v9
         with:
+          GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           urls: |
             ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
           uploadArtifacts: true
