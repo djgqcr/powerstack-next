@@ -16,24 +16,18 @@ jobs:
         id: loading_comment_to_pr
         uses: marocchino/sticky-pull-request-comment@v2.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           number: ${{ github.event.issue.number }}
           header: lighthouse
           message: |
             Running Lighthouse audit... The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
-
-
-            
 
       - name: vercel-preview-url
         id: vercel_preview_url
         uses: zentered/vercel-preview-url@v1.0.0
         env:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} 
-      
-      - name: Get URL
-        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"      
-
+     
       - uses: actions/checkout@v2
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
