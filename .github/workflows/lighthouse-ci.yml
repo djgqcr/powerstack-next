@@ -11,7 +11,7 @@ jobs:
         id: loading_comment_to_pr
         uses: marocchino/sticky-pull-request-comment@v2.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.VERCEL_TOKEN}}
           number: ${{ github.event.issue.number }}
           header: lighthouse
           message: |
@@ -21,7 +21,7 @@ jobs:
         id: vercel_preview_url
         uses: aaimio/vercel-preview-url-action@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.VERCEL_TOKEN}}
       - uses: actions/checkout@v2
       
       - name: Audit preview URL with Lighthouse
@@ -36,7 +36,7 @@ jobs:
         id: format_lighthouse_score
         uses: actions/github-script@v5
         with:
-          github-token: ${{secrets.LHCI_GITHUB_APP_TOKEN}}
+          github-token: ${{secrets.VERCEL_TOKEN}}
           script: |
             const result = ${{ steps.lighthouse_audit.outputs.manifest }}[0].summary
             const links = ${{ steps.lighthouse_audit.outputs.links }}
@@ -60,7 +60,7 @@ jobs:
         id: comment_to_pr
         uses: marocchino/sticky-pull-request-comment@v2.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.VERCEL_TOKEN}}
           number: ${{ github.event.issue.number }}
           header: lighthouse
           message: |
