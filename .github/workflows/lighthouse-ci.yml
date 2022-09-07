@@ -6,12 +6,6 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-       
       - name: Add comment to PR
         id: loading_comment_to_pr
         uses: marocchino/sticky-pull-request-comment@v2.0.0
@@ -20,22 +14,17 @@ jobs:
           number: ${{ github.event.issue.number }}
           header: lighthouse
           message: |
-            ${{ steps.format_lighthouse_score.outputs.comment }}
-            Running Lighthouse audit... The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
-
-      - name: vercel-preview-url
+            Running Lighthouse audit... 
+      - name: Capture vercel-preview-url
         id: vercel_preview_url
-        uses: zentered/vercel-preview-url@v1.0.0
+        uses: aaron-binary/vercel-preview-url-action@v0.0.3
         env:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} 
-  
-
       - uses: actions/checkout@v2
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
         uses: treosh/lighthouse-ci-action@v9
         with:
-          github-token: ${{secrets.LHCI_GITHUB_APP_TOKEN }}
           urls: |
             ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
           uploadArtifacts: true
