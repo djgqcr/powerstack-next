@@ -18,7 +18,7 @@ jobs:
       - name: Capture vercel-preview-url
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
-        env:  
+        with:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} 
       - uses: actions/checkout@v2
       - name: Audit preview URL with Lighthouse
