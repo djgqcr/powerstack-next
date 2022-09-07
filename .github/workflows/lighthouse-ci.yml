@@ -30,7 +30,7 @@ jobs:
       
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
-        uses: treosh/lighthouse-ci-action@v6
+        uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
             ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
