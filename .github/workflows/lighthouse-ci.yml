@@ -19,14 +19,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           number: ${{ github.event.issue.number }}
           header: lighthouse
-          message: ${{ steps.format_lighthouse_score.outputs.comment }}
-          
+          message: |
+            ${{ steps.format_lighthouse_score.outputs.comment }}
+            Running Lighthouse audit... The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
+
       - name: vercel-preview-url
         id: vercel_preview_url
         uses: zentered/vercel-preview-url@v1.0.0
         env:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} 
-     
+  
+
       - uses: actions/checkout@v2
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
