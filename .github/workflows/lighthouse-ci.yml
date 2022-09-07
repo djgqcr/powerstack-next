@@ -11,8 +11,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - run: sleep 30
+          
       - name: vercel-preview-url
         uses: zentered/vercel-preview-url@v1.0.0
         id: vercel_preview_url
