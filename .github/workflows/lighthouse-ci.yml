@@ -25,7 +25,7 @@ jobs:
       - name: vercel-preview-url
         id: vercel_preview_url
         uses: zentered/vercel-preview-url@v1.0.0
-        with:  
+        env:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} 
       
       - name: Get URL
