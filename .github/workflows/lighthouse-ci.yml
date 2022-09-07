@@ -12,16 +12,12 @@ jobs:
         with:
           node-version: 16
 
-      - run: sleep 3
+      - run: sleep 15
       - name: vercel-preview-url
         uses: zentered/vercel-preview-url@v1.0.0
         id: vercel_preview_url
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}  
-        with:
-          vercel_team_id: 'opstrace'
-          vercel_project_id: 'opstrace.com'
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} 
       
       - name: Get URL
         run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"      
