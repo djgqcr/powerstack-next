@@ -29,10 +29,10 @@ jobs:
         uses: treosh/lighthouse-ci-action@v3
         with:
           urls: |
-            ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
+            https://${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
-          run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+
       - name: Format lighthouse score
         id: format_lighthouse_score
         uses: actions/github-script@v3
