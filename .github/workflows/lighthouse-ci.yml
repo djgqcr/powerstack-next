@@ -30,7 +30,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
+            [ ${{ steps.vercel_preview_url.outputs.vercel_preview_url }} ]
           uploadArtifacts: true
           temporaryPublicStorage: true
           run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
