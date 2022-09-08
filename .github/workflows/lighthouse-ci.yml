@@ -22,7 +22,8 @@ jobs:
         uses: zentered/vercel-preview-url@v1.0.0
         env:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      
+      - name: Get URL
+        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
         uses: treosh/lighthouse-ci-action@v3
@@ -31,6 +32,7 @@ jobs:
             ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
+          run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
       - name: Format lighthouse score
         id: format_lighthouse_score
         uses: actions/github-script@v3
