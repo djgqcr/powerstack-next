@@ -23,14 +23,14 @@ jobs:
         env:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - name: Get URL
-        run: echo ${{ steps.vercel_preview_url.outputs.preview_url }}
+        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
       
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            [ ${{ steps.vercel_preview_url.outputs.vercel_preview_url }} ]
+             `https://${{ steps.vercel_preview_url.outputs.preview_url }}`
           uploadArtifacts: true
           temporaryPublicStorage: true
           run: echo ${{ steps.vercel_preview_url.outputs.preview_url }}
