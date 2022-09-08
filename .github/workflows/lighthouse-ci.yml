@@ -23,7 +23,7 @@ jobs:
         env:  
             VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - name: Get URL
-        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+        run: echo ${{ steps.vercel_preview_url.outputs.preview_url }}
       
       - name: Audit preview URL with Lighthouse
         id: lighthouse_audit
@@ -33,7 +33,7 @@ jobs:
             [ ${{ steps.vercel_preview_url.outputs.vercel_preview_url }} ]
           uploadArtifacts: true
           temporaryPublicStorage: true
-          run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+          run: echo ${{ steps.vercel_preview_url.outputs.preview_url }}
 
 
       - name: Format lighthouse score
